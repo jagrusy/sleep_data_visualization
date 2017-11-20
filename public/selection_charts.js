@@ -73,10 +73,10 @@ function drawChart(arrayData) {
 //   chart.draw(data, options);
 // }
 
-function getData() {
+function getSelections() {
   $.ajax({
       method: "GET",
-      url: "./api/parse_csv",
+      url: "./api/getSelections",
       contentType: "application/json",
     })
     .done(function(data) {
