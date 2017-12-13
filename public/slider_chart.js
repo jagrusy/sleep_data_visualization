@@ -1,6 +1,10 @@
 function drawChart(arrayData) {
-    var data = google.visualization.arrayToDataTable(arrayData);
+    data = google.visualization.arrayToDataTable(arrayData);
+    data.addColumn({type:'string', role:'annotationText'});
+    data.addColumn({type:'string', role:'annotation'});
 
+    // data.addColumn({type:''})
+    console.log(data);
     var chart = new google.visualization.ChartWrapper({
         chartType: 'LineChart',
         containerId: 'chart_div',
@@ -89,8 +93,14 @@ function drawChart(arrayData) {
         }
       }
 
-      if (nums.length != 2) {
-        alert('Please select 2 points');
+      if (nums.length > 2) {
+        alert('Please select 1 or 2 points');
+      } else if (nums.length == 1) {
+
+        var point = prompt("Data classification", "POI");
+        data.setCell(nums[0], 5, 'True');
+        data.setCell(nums[0], 6, point);
+        dashboard.draw(data);
       } else {
         nums = nums.sort(function(a, b){
           return a - b;
@@ -99,19 +109,15 @@ function drawChart(arrayData) {
           min: nums[0],
           max: nums[1]
         };
-        alert('You selected ' + JSON.stringify(range));
-        //TODO do something with the data
+        // alert('You selected ' + JSON.stringify(range));
         // data.getValue(rowIndex, colIndex) -> get value from DataTable
         // data.getNumberOfColumns() -> can be used to iterate over cols
-        var outer = [];
-        for (var j = range.min; j < range.max; j++) {
-          var inner = [];
-          for (var k = 0; k < data.getNumberOfColumns(); k++) {
-            inner.push(data.getValue(j, k));
-          }
-          outer.push(inner);
-        }
-        console.log(outer);
+        var type = prompt("Data classification", "Kick");
+        data.setCell(range.min, 5, 'True');
+        data.setCell(range.min, 6, type + ' start');
+        data.setCell(range.max, 5, 'True');
+        data.setCell(range.max, 6, type + ' end');
+        dashboard.draw(data);
       }
     }
 
@@ -150,6 +156,15 @@ function getData() {
     .done(function(data) {
       drawChart(data);
     });
+}
+
+function exportCSV() {
+  var csv = google.visualization.dataTableToCsv(data);
+  var hiddenElement = document.createElement('a');
+  hiddenElement.href = 'data:text/csv;charset=utf-8,' + encodeURI(csv);
+  hiddenElement.target = '_blank';
+  hiddenElement.download = 'data.csv';
+  hiddenElement.click();
 }
 
 google.charts.load('visualization', '1', {packages:['controls'], callback: getData});
