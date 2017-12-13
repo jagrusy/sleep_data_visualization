@@ -1,3 +1,3 @@
 # Sleep Data Visualization
 
-[Project description](https://jagrusy.github.io/)
+[Project description](http://ece4012y2017.ece.gatech.edu/fall/sd17f22/)
