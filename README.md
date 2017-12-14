@@ -5,7 +5,7 @@
 # Getting Started
 
 This app runs using NodeJS. To run this app yourself follow these steps:
-1. [Install NodeJS](https://nodejs.org/en/download/)
+1. [Install NPM and NodeJS](http://blog.teamtreehouse.com/install-node-js-npm-windows)
 2. Clone the repository
 3. Ensure you are in the root directory of the repository
 4. From the command line type: ```npm install```
