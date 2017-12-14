@@ -18,7 +18,6 @@
   </div>
 
   <!-- Use any element to open the sidenav -->
-  <span onclick="openNav()"></span>
   <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span>
 
   <div id="dashboard_div">
@@ -32,16 +31,16 @@
     <div id="chart_div"></div>
     <div id="control_div"></div>
   </div>
+
+  <script type="text/javascript">
+    function openNav() {
+        document.getElementById("mySidenav").style.width = "250px";
+    }
+
+    function closeNav() {
+        document.getElementById("mySidenav").style.width = "0";
+    }
+  </script>
 </body>
-
-<script type="text/javascript">
-  function openNav() {
-      document.getElementById("mySidenav").style.width = "250px";
-  }
-
-  function closeNav() {
-      document.getElementById("mySidenav").style.width = "0";
-  }
-</script>
 
 </html>

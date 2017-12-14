@@ -11,8 +11,6 @@ var app = express();
 //TODO bluetooth data transfer
 
 var currentFile = '';
-var selectionMap = [];
-
 
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -23,7 +21,6 @@ app.use(bodyParser.json());
 // Endpoint to return csv as parsed array
 app.get('/api/parse_csv', function(req, res) {
   if (currentFile === '') {
-    console.log('$$$$$$$');
     res.redirect('/uploads.html');
     res.end();
   } else {
@@ -53,35 +50,6 @@ app.get('/api/parse_csv', function(req, res) {
       });
     });
   }
-});
-
-//
-app.post('/api/addSelection', function(req, res) {
-  console.log(req.body);
-  console.log(JSON.parse(req.body));
-  var selection = req.body.array;
-  if (selection) {
-    // Check if there is already an entry
-    if (selectionMap[currentFile]) {
-      var index = selectionMap[currentFile].selections.length;
-      selectionMap[currentFile].selections[index] = selection;
-    } else {
-      var index = selectionMap.length;
-      selectionMap[index] = {
-        'file': currentFile,
-        'selections': [selection]
-      };
-    }
-    res.status(200);
-  } else {
-    res.send('No selection data');
-  }
-  console.log('SELECTION::' + selection);
-});
-
-// Endpoint to return selections
-app.get('/api/getSelections', function(req, res) {
-
 });
 
 // Endpoint to upload file

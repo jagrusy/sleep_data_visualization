@@ -17,7 +17,6 @@
   </div>
 
   <!-- Use any element to open the sidenav -->
-  <span onclick="openNav()"></span>
   <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span>
 
   <div>
@@ -26,19 +25,15 @@
       <input type="submit">
     </form>
   </div>
+
+  <script type="text/javascript">
+    function openNav() {
+        document.getElementById("mySidenav").style.width = "250px";
+    }
+
+    function closeNav() {
+        document.getElementById("mySidenav").style.width = "0";
+    }
+  </script>
 </body>
-
-<script type="text/javascript">
-  function openNav() {
-      document.getElementById("mySidenav").style.width = "250px";
-  }
-
-  function closeNav() {
-      document.getElementById("mySidenav").style.width = "0";
-  }
-</script>
-
-<script src="filedrag.js"></script>
-
-
 </html>
